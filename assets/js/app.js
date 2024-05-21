@@ -17,4 +17,25 @@ window.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+
+    let back_to_top = document.getElementById("back-to-top");
+
+    back_to_top.addEventListener("click", () => {
+        document.documentElement.scrollTop = 0;
+    })
+
+    window.onscroll = () => {
+        if (document.documentElement.scrollTop > 20) {
+            back_to_top.style.display = "block";
+        } else {
+            back_to_top.style.display = "none";
+        }
+    };
+
+
+
+
+
 });
+
+
