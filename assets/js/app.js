@@ -1,16 +1,19 @@
 window.addEventListener("DOMContentLoaded", () => {
     
-    let carrets = document.querySelectorAll("i.caret");
+    let titles = document.querySelectorAll("div.global-titles");
 
-    carrets.forEach((carret) => {
-        carret.addEventListener("click", () => 
+    titles.forEach((title) => {
+        title.addEventListener("click", () => 
         {
-            let div_with_content = carret.parentElement.nextElementSibling;
-            div_with_content.classList.toggle("none");
+            // Get the icon inside the title
+            let icon = title.childNodes[1];
             
-            carret.classList.toggle("fa-caret-right");
-            carret.classList.toggle("fa-caret-down");
-        
+            // Change it
+            icon.classList.toggle("fa-caret-right");
+            icon.classList.toggle("fa-caret-down");
+
+            // Toggle the none class on the sub-titles div
+            title.nextElementSibling.classList.toggle("none");
         });
     });
 

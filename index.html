@@ -20,41 +20,47 @@
                 <div class="global-titles">
                     <i class="fa-solid fa-caret-right caret"></i> 
                     
-                    <a href="#">
-                        <i class="fa-solid fa-terminal"></i> <span>IP</span>
+                    <a>
+                        <i class="fa-solid fa-terminal"></i> <span>Linux</span>
                     </a>
                 </div>
                 <div class="sub-titles none">
                     <ul>
-                        <li><a href="#">IP Configuration</a></li>
-                        <li><a href="#">Routing</a></li>
+                        <li><a href="#ip-ip-configuration">IP Configuration</a></li>                    
+                        <li><a href="#ip-routing">Routing</a></li>
+                        <li><a href="#ip-etc-network-interfaces">/etc/network/interfaces</a></li>                    
+                        <li><a href="#ip-show">Show</a></li>
                     </ul>
                 </div>
 
 
                 <div class="global-titles">
                     <i class="fa-solid fa-caret-right caret"></i> 
-                    <a href="#">
+                    <a>
                         <i class="fa-solid fa-network-wired"></i> <span>Cisco</span>
                     </a>
                 </div>
                 <div class="sub-titles none">
                     <ul>
-                        <i class="fa-solid fa-gears"></i> <span>CONFIGURATION</span>
+                        <i class="fa-solid fa-diagram-project"></i> <span>COUCHE 3</span>
                         <ul>
-                            <li><a href="#">IP Configuration</a></li>
-                            <li><a href="#">Routing</a></li>
+                            <li><a href="#cisco-ip-configuration">IP Configuration</a></li>
+                            <li><a href="#cisco-routing">Routing</a></li>
                         </ul>
 
-                        <i class="fa-solid fa-boxes-stacked"></i> <span>UTILS</span>
+                        <i class="fa-solid fa-plug"></i> <span>COUCHE 2</span>
                         <ul>
-                            <li><a href="#">Section</a></li>
-                            <li><a href="#">Include</a></li>
-                        </ul>                        
-                        <i class="fa-solid fa-shield-halved"></i> <span>SECURITY</span>
+                            <li><a href="#cisco-vlan">VLAN</a></li>
+                            <li><a href="#cisco-mac">MAC</a></li>
+                            <li><a href="#cisco-stp">STP</a></li>
+                            <li><a href="#cisco-acl">ACL</a></li>
+                        </ul>
+
+                        <i class="fa-solid fa-gears"></i> <span>AUTRES</span>
                         <ul>
-                            <li><a href="#">Good practices</a></li>
-                            <li><a href="#">Enable SSH</a></li>
+                            <li><a href="#cisco-good-practices">Good practices</a></li>
+                            <li><a href="#cisco-enable-ssh">Enable SSH</a></li>
+                            <li><a href="#cisco-show">Show</a></li>    
                         </ul>
 
                     </ul>
@@ -69,10 +75,275 @@
                 </div>
                 <div class="sub-titles none">
                     <ul>
-                        <li><a href="https://www.site24x7.com/fr/tools/ipv4-sous-reseau-calculatrice.html">Subnet calculator</a></li>
+                        <li><a target="_blank" href="https://www.site24x7.com/fr/tools/ipv4-sous-reseau-calculatrice.html">Subnet calculator</a></li>
                     </ul>
                 </div>
+            </section>
 
+            <section id="content">
+                <section id="ip">
+                    <h1 class="category-title"><i class="fa-solid fa-terminal"></i> <span>Linux</span></h1>
+                    <div style="margin-top: 50px;">
+                        <h2 id="ip-ip-configuration">IP Address</h2>
+                        
+                        <b>Up/Down an interface</b>
+                        <pre>ip link set [INAME] up|down</pre>
+                        
+                        <b>Assign an ip address to an interface</b>
+                        <pre>ip addr add [IP]/[MASK] dev [INAME]</pre>
+                        
+                        <span class="note">To unset an ip address, simply replace “add” by “delete”.</span>
+                    </div>
+
+                    <div>
+                        <h2 id="ip-routing">Routes</h2>
+                        <b>Set a route</b>
+
+                        <pre>ip route add [DST_NETWORK]/[DST_MASK] via [ROUTER_IP]</pre>
+
+                        <b>Set the default gateway</b>
+
+                        <pre>ip route add default via [GATEWAY_IP]</pre>
+                        
+                        <span class="note">To unset a route or the default gateway, simply replace “add” by “delete”.</span>
+                    </div>
+
+                    <div>
+                        <h2 id="ip-etc-network-interfaces">/etc/network/interfaces</h2>
+                        <b>General boilerplate</b>
+
+                        <pre>
+auto [INAME]
+iface [INAME1 INAME2 INAME3...] dhcp
+iface6 [INAME1 INAME2 INAME3] dhcp
+
+iface [INAME] inet static
+    address [IP]
+    netmask [NETMASK]
+    gateway [GATEWAY]</pre>
+                    </div>
+                    
+                    <div>
+                        <h2 id="ip-show">Show</h2>
+                        <b>Show interface informations</b>
+                        <pre>ip a s [INAME]</pre>
+
+                        <b>Show configured routes</b>
+                        <pre>ip route</pre>
+
+                        <b>Show neighbors</b>
+                        <pre>ip show</pre>
+
+                    </div>
+                </section>
+
+
+                <section id="cisco">
+                    <h1 class="category-title"><i class="fa-solid fa-network-wired"></i> <span>Cisco</span></h1>
+
+                    <h1 class="category-sub-title"><i class="fa-solid fa-diagram-project"></i> <span>COUCHE 3</span></h1>
+
+                    <div>
+                        <h2 id="cisco-ip-configuration">Configuration</h2>
+                        <b>Set an ip address</b>
+
+                        <pre>interface X
+ip add ip/mask</pre>
+                        
+                        <span class="note">To unset an ip address, simply add “no” before the “ip” command.</span>
+                    </div>
+
+                    <div>
+                        <h2 id="cisco-routing">Routes</h2>
+                        <b>Set a route</b>
+
+                        <pre>ip route [DST_NETWORK] [DST_MASK] [ROUTER]</pre>
+
+                        <b>Set the default gw</b>
+
+                        <pre>ip default-gateway [GATEWAY]</pre>
+                        
+                        <span class="note">To unset an route or the default gateway, simply add no before the ip command.</span>
+                    </div>
+
+                    
+                    <h1 class="category-sub-title"><i class="fa-solid fa-plug"></i> <span>COUCHE 2</span></h1>
+                    <div>
+                        <h2 id="cisco-vlan">VLAN</h2>
+                        <b>Create a vlan</b>
+                        <pre>
+vlan [NUMBER]
+name [NAME_OF_THE_VLAN]</pre>
+                        
+                        <b>Put an interface in a vlan</b>
+                        <pre>
+interface [INAME]
+switchport mode access
+switchport access vlan [NUMBER]</pre>
+
+                        <b>Trunk encapsulation dot1q</b>
+                        <pre>
+interface [INAME]
+switchport trunk encapsulation dot1q
+switchport mode trunk
+switchport trunk allowed vlan [VLAN_NUMBER1],[VLAN_NUMER2]
+                        </pre>
+
+                    </div>
+
+                    <div>
+                        <h2 id="cisco-mac">MAC</h2>
+                        <b>Change aging time</b>
+                        <pre>mac address-table aging-time [VALUE (seconds)]</pre>
+                        
+                        <b>Create a static entry</b>
+                        <pre>mac address-table static [MAC_ADDRESS xxxx.xxxx.xxxx] vlan 1 interface [INAME]</pre>
+                        
+                        <b>Clear the mac address table</b>
+                        <pre>clear mac address-table dynamic</pre>
+                    </div>
+
+                    
+                    <div>
+                        <h2 id="cisco-stp">STP</h2>
+                        <b>Change the priority</b>
+                        <pre>spanning-tree vlan 1 priority [PRIORITY]</pre>
+
+                        <b>Change duration of ...</b>
+                        <pre>
+! Durée de Listening -> Learning & Learning -> Forwarding
+spanning-tree vlan 1 forward-time [DURATION: 15]
+! Récurrence d'envoi des trames
+spanning-tree vlan 1 hello-time [DURATION: 2] 
+! Durée après laquelle recalculer si aucun BPDU reçu
+spanning-tree vlan 1 max-age [DURATION: 20]
+                        </pre>
+
+                        <b>Disable STP</b>
+                        <pre>
+interface [INAME]
+spanning-tree portfast</pre>
+
+                        <b>Update the port</b>
+                        <pre>
+interface [INAME]
+no negotiation auto
+speed 100</pre>
+                        
+                        <b>Clear the mac address table</b>
+                        <pre>clear mac address-table dynamic</pre>
+                    </div>
+
+                    <div>
+                        <h2 id="cisco-acl">ACL</h2>
+                        <b>Create a standard ACL</b>
+                        <pre>
+! Interdit le trafic provenant de .4
+access-list [ACL_ID] deny host 192.168.1.4
+! Autorise tout le reste
+access-list [ACL_ID] permit any</pre>
+
+                        <b>Create an extended ACL</b>
+                        <pre>
+! Filtre ICMP pour 192.168.1./24 quand dst => .23
+access-list [ACL_ID] deny icmp 192.168.1.0 255.255.255.0 host 192.168.1.23
+
+! Interdire accès au port 21
+access-list [ACL_ID] deny tcp any host 192.168.1.23 eq 21
+
+! Autorise le reste
+access-list [ACL_ID] permit ip any any</pre>
+
+                        <span class="note">
+                            ACL Standard: (0-100) Critère seulement sur l'@ip source<br>
+                            ACL Extended: (100-) Critère sur @ip_src, @ip_dst, port_src, port_dst, service
+                        </span><br><br>
+                        
+                        <b>Enable ACL on interface</b>
+                        <pre>
+interface [INAME]
+ip access-group [ACL_ID] in</pre>
+                    </div>
+
+
+                    <h1 class="category-sub-title"><i class="fa-solid fa-gears"></i> <span>AUTRES</span></h1>
+                    
+                    <div>
+                        <h2 id="cisco-good-practices">Good practices</h2>
+                        <b>General things to do</b>
+                        <pre>
+! Chiffrement des mots de passes locaux cisco
+service password-encryption
+
+! Forcer une taille minimale pour les mots de passes
+security passwords min-length 8
+
+! Bloquer pendant deux minutes si trois fails en une minutes
+login block-for 120 attempts 3 within 60
+
+! Mettre un mot de passe pour le enable
+enable secret MY_SECURE_PASSWORD
+
+! Mettre un mot de passe ou terminaux virtuel
+line vty 0 4 
+password MY_SECURE_PASSWORD
+exec-timeout 5 30 </pre>
+                        
+                    </div>
+
+
+                    <div>
+                        <h2 id="cisco-enable-ssh">Enable SSH</h2>
+                        <b>Enable SSH on a router or a switch</b>
+                        <pre>
+configure terminal
+hostname [HOSTNAME]
+
+! IF YOU ARE CONFIGURING A SWITCH
+interface vlan1
+ip address [IP]/[MASK]
+ip default-gateway [GATEWAY]
+interface vlan1
+no sh
+! ENDIF
+
+username [USERNAME] secret [PASSWORD]
+enable secret [PASSWORD]
+
+ip domain name [DOMAIN]
+crypto key generate rsa general-keys modulus 1024
+
+line vty 0 [YOUR NUMBER OF VTYS]
+transport input ssh
+login local</pre>
+                        
+                    </div>
+
+
+                    <div>
+                        <h2 id="cisco-show">Show</h2>
+                        <b>Show version, ram etc</b>
+                        <pre>show version</pre>
+                        
+                        <b>Show brief information about interfaces</b>
+                        <pre>show ip int brief</pre>
+
+                        <b>Show VLANs</b>
+                        <pre>sh vlan</pre>
+
+                        <b>Mac address table</b>
+                        <pre>sh mac address-table</pre>
+
+                        <b>Spanning tree</b>
+                        <pre>show spanning-tree &lt;summary&gt;</pre>
+                        <pre>show spanning-tree vlan 1</pre>
+
+                        <b>"Grep"-like tricks</b>
+                        <pre>show interface | incluce up|down</pre>
+                        <pre>show interface | incluce up&down</pre>
+
+                    </div>
+                </section>
             </section>
         </main>    
     </body>
