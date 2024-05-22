@@ -46,7 +46,13 @@
                         <i class="fa-solid fa-diagram-project"></i> <span>COUCHE 3</span>
                         <ul>
                             <li><a href="#cisco-ip-configuration">IP Configuration</a></li>
-                            <li><a href="#cisco-routing">Routing</a></li>
+                            <li><a href="#cisco-routes">Routes</a></li>
+
+                            <li class="sub-sub-title"><a href="#cisco-routing-protocols"><i class="fa-solid fa-network-wired"></i>ROUTING PROTOCOLS</a></li>
+                            <ul>
+                                <li><a href="#cisco-rip">RIP</a></li>
+                                <li><a href="#cisco-ospf">OSPF</a></li>
+                            </ul>
                         </ul>
 
                         <i class="fa-solid fa-plug"></i> <span>COUCHE 2</span>
@@ -155,7 +161,7 @@ ip add ip/mask</pre>
                     </div>
 
                     <div>
-                        <h2 id="cisco-routing">Routes</h2>
+                        <h2 id="cisco-routes">Routes</h2>
                         <b>Set a route</b>
 
                         <pre>ip route [DST_NETWORK] [DST_MASK] [ROUTER]</pre>
@@ -167,7 +173,68 @@ ip add ip/mask</pre>
                         <span class="note">To unset an route or the default gateway, simply add no before the ip command.</span>
                     </div>
 
-                    
+
+                    <h3 class="category-sub-title"><i class="fa-solid fa-plug"></i> <span>Routing protocols</span></h3>
+                    <div>
+                        <h2 id="cisco-rip">RIP</h2>
+                        <b>RIP</b>
+                        <pre>router rip
+version 2</pre>
+                        <b>Announce routers</b>
+                        <pre>network [NETWORK]</pre>
+
+                        <b>Others</b>
+                        <pre>
+! Désactiver la récapitulation
+no auto-summary
+! Pas de rip
+passive-interface [INAME]
+! Redistribuer route par défaut
+redistribute static
+! Changer la distance administrative
+distance [VALUE]</pre>
+
+                        <b>Debug</b>
+                        <pre>
+debug ip rip
+debug ip routing</pre>
+
+                    </div>
+                    <div>
+                        <h2 id="cisco-ospf">OSPF</h2>
+                        <b>Configuration</b>
+                        <pre>router ospf [PROCESS_ID]
+network [IP_ADDRESS] [REVERSED_MASK] area [ZONE_OSPF]</pre>
+                        <pre>router-id 1.1.1.1</pre>
+                        <pre>auto-cost reference bandwith [BANDWITH]</pre>
+
+                        <b>A passive interface has OSPF but don't sends/receive update</b>
+                        <pre>passive-interface [INAME]</pre>
+
+                        <pre>ip opsf hello-interval [SECONDS] [ET]</pre>
+                        <pre>ip ospf dead-interval [SECONDS]</pre>
+
+                        <b>Stop OSPF</b>
+                        <pre>clear ospf cost process</pre>
+                        <span class="note">Après avoir changer ID de retour</span>
+                        <br><br>
+                        <b>Interact with interfaces</b>
+                        <pre>
+interface [INAME]
+ip ospf cost [COST]
+bandwith [BANDWITH_KBIT/S]</pre>
+
+                        <b>Enable OSPF on an interface</b>
+                        <pre>ip ospf process area noarea</pre>
+
+                        <b>Chemins multiples</b>
+                        <pre>
+maximum path 2
+! Ip route cache bloque sur une interface pour accélerer le routage
+no ip route cache</pre>
+                    </div>
+
+
                     <h1 class="category-sub-title"><i class="fa-solid fa-plug"></i> <span>COUCHE 2</span></h1>
                     <div>
                         <h2 id="cisco-vlan">VLAN</h2>
@@ -187,8 +254,7 @@ switchport access vlan [NUMBER]</pre>
 interface [INAME]
 switchport trunk encapsulation dot1q
 switchport mode trunk
-switchport trunk allowed vlan [VLAN_NUMBER1],[VLAN_NUMER2]
-                        </pre>
+switchport trunk allowed vlan [VLAN_NUMBER1],[VLAN_NUMER2]</pre>
 
                     </div>
 

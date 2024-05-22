@@ -4,6 +4,7 @@
     --primary-secondary: #4cacfc;
     --secondary: #cecac3;
     --red: #ea868f;
+    --yellow: rgb(255, 218, 106);
 
     scroll-behavior: smooth;
 }
@@ -27,6 +28,14 @@ pre {
     color: var(--secondary);
     border-radius: 10px;
     padding: 20px;
+}
+
+h3 {
+    font-size: 26px !important;
+    color: var(--yellow) !important;
+}
+h3 i {
+    color: var(--yellow) !important;
 }
 
 span.note {
@@ -64,7 +73,7 @@ span.note {
 }
 
 .category-sub-title i {
-    color: var(--red) !important;
+    color: var(--red);
 }
 
 #menu .global-titles {
@@ -122,6 +131,21 @@ span.note {
 #menu .sub-titles a,
 #content i {
     color: var(--primary-secondary);
+}
+
+#menu li.sub-sub-title {
+    list-style: none !important;
+}
+
+#menu li.sub-sub-title a {
+    margin-top: 10px;
+    font-weight: 800;
+    color: var(--red);
+    font-size: 18px;
+}
+
+#content h1.category-sub-title i {
+    color: var(--red) !important;
 }
 
 #content section {
