@@ -204,18 +204,19 @@ debug ip routing</pre>
                         <h2 id="cisco-ospf">OSPF</h2>
                         <b>Configuration</b>
                         <pre>router ospf [PROCESS_ID]
-network [IP_ADDRESS] [REVERSED_MASK] area [ZONE_OSPF]</pre>
-                        <pre>router-id 1.1.1.1</pre>
-                        <pre>auto-cost reference bandwith [BANDWITH]</pre>
+    network [IP_ADDRESS] [REVERSED_MASK] area [ZONE_OSPF]
+    network [IP_INTERFACE] 0.0.0.0 area [ZONE_OSPF]</pre>
+    router-id 1.1.1.1
+    ! N’enverra ni recevra d’update et désactivera l’envoi de Hello Packet.
+    passive-interface [INAME]
+    auto-cost reference bandwith [BANDWITH]</pre>
 
-                        <b>A passive interface has OSPF but don't sends/receive update</b>
-                        <pre>passive-interface [INAME]</pre>
-
-                        <pre>ip opsf hello-interval [SECONDS] [ET]</pre>
+                        <pre>ip opsf hello-interval [SECONDS]</pre>
                         <pre>ip ospf dead-interval [SECONDS]</pre>
 
                         <b>Stop OSPF</b>
-                        <pre>no router ospf [OSPF_ID]</pre>
+                        <pre>no router ospf [OSPF_ID]
+clear ospf process</pre>
                         <span class="note">Après avoir changer ID de retour</span>
                         <br><br>
                         <b>Interact with interfaces</b>
@@ -405,6 +406,11 @@ login local</pre>
                         <pre>show spanning-tree &lt;summary&gt;</pre>
                         <pre>show spanning-tree vlan 1</pre>
 
+                        <b>OSPF</b>b>
+                        <pre>show ip ospf </pre>
+                        <pre>show ip ospf data</pre>
+                        <pre>show ip ospf interface [INAME]</pre>
+                        
                         <b>"Grep"-like tricks</b>
                         <pre>show interface | incluce up|down</pre>
                         <pre>show interface | incluce up&down</pre>
