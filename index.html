@@ -65,6 +65,8 @@
 
                         <i class="fa-solid fa-gears"></i> <span>AUTRES</span>
                         <ul>
+
+                            <li><a href="#cisco-dhcp">DHCP</a></li>
                             <li><a href="#cisco-good-practices">Good practices</a></li>
                             <li><a href="#cisco-enable-ssh">Enable SSH</a></li>
                             <li><a href="#cisco-show">Show</a></li>    
@@ -350,6 +352,20 @@ ip access-group [ACL_ID] in</pre>
 
                     <h1 class="category-sub-title"><i class="fa-solid fa-gears"></i> <span>AUTRES</span></h1>
                     
+                    <div>
+                        <h2 id="cisco-dhcp">DHCP</h2>
+                        <b>Enable DHCP on a router</b>
+                        <pre>
+! On précise les adresses à exclure (par ex celle du routeur etc)
+ip dhcp excluded-adrdress x.x.x.x
+
+! On créé le pool DHCP
+ip dhcp pool [NAME]
+network [IP] [MASK]
+default-router [GATEWAY]
+                        </pre>
+                    </div>
+
                     <div>
                         <h2 id="cisco-good-practices">Good practices</h2>
                         <b>General things to do</b>
