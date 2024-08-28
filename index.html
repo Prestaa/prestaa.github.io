@@ -366,6 +366,12 @@ login block-for 120 attempts 3 within 60
 ! Mettre un mot de passe pour le enable
 enable secret MY_SECURE_PASSWORD
 
+! Désactiver attente DNS
+no ip domain-lookup                 
+
+! Afficher les autres appareiles cisco joignable
+show cdp neigh
+                            
 ! Mettre un mot de passe ou terminaux virtuel
 line vty 0 4 
 password MY_SECURE_PASSWORD
