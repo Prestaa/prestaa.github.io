@@ -52,6 +52,7 @@
                             <ul>
                                 <li><a href="#cisco-rip">RIP</a></li>
                                 <li><a href="#cisco-ospf">OSPF</a></li>
+                                <li><a href="#cisco-bgp">BGP</a></li>
                             </ul>
                         </ul>
 
@@ -170,8 +171,8 @@ iface [INAME] inet static
                         <h2 id="cisco-ip-configuration">Configuration</h2>
                         <b>Set an ip address</b>
 
-                        <pre>interface X
-ip add ip/mask</pre>
+                        <pre>interface [INAME]
+ip add [IP_ADDRESS]/[MASK]</pre>
                         
                         <span class="note">To unset an ip address, simply add “no” before the “ip” command.</span>
                     </div>
@@ -193,10 +194,9 @@ ip add ip/mask</pre>
                     <h3 class="category-sub-title"><i class="fa-solid fa-plug"></i> <span>Routing protocols</span></h3>
                     <div>
                         <h2 id="cisco-rip">RIP</h2>
-                        <b>RIP</b>
                         <pre>router rip
 version 2</pre>
-                        <b>Announce routers</b>
+                        <b>Announce network</b>
                         <pre>network [NETWORK]</pre>
 
                         <b>Others</b>
@@ -210,29 +210,13 @@ redistribute static
 ! Changer la distance administrative
 distance [VALUE]</pre>
 
-                        <b>Debug</b>
-                        <pre>
-debug ip rip
-debug ip routing</pre>
-
                     </div>
                     <div>
                         <h2 id="cisco-ospf">OSPF</h2>
                         <b>Configuration</b>
                         <pre>router ospf [PROCESS_ID]
     network [IP_ADDRESS] [REVERSED_MASK] area [ZONE_OSPF]
-    network [IP_INTERFACE] 0.0.0.0 area [ZONE_OSPF]</pre>
-    router-id 1.1.1.1
-    ! N’enverra ni recevra d’update et désactivera l’envoi de Hello Packet.
-    passive-interface [INAME]
-    auto-cost reference bandwith [BANDWITH]</pre>
-
-                        <pre>ip opsf hello-interval [SECONDS]</pre>
-                        <pre>ip ospf dead-interval [SECONDS]</pre>
-
-                        <b>Stop OSPF</b>
-                        <pre>no router ospf [OSPF_ID]
-clear ospf process</pre>
+</pre>
                         <span class="note">Après avoir changer ID de retour</span>
                         <br><br>
                         <b>Interact with interfaces</b>
@@ -241,14 +225,20 @@ interface [INAME]
 ip ospf cost [COST]
 bandwith [BANDWITH_KBIT/S]</pre>
 
-                        <b>Enable OSPF on an interface</b>
-                        <pre>ip ospf process area noarea</pre>
-
                         <b>Chemins multiples</b>
                         <pre>
 maximum path 2
 ! Ip route cache bloque sur une interface pour accélerer le routage
 no ip route cache</pre>
+                    </div>
+
+                    <div>
+                        <h2 id="cisco-bgp">BGP</h2>
+                        <b>Configuration</b>
+                        <pre>router bgp [AS_NUMBER]
+    network [IP_ADDRESS] mask [MASK] 
+    neighbor [IP_ADDRESS] remote-as [AS_OF_REMOTE_ROUTER]
+</pre>
                     </div>
 
 
@@ -441,6 +431,8 @@ login local</pre>
                         <pre>show spanning-tree &lt;summary&gt;</pre>
                         <pre>show spanning-tree vlan 1</pre>
 
+                        <b>Routing</b>
+                        <pre>show ip protocols</pre>
                         <b>OSPF</b>
                         <pre>show ip ospf </pre>
                         <pre>show ip ospf data</pre>
@@ -464,7 +456,7 @@ login local</pre>
                     <pre>show ip all</pre>
                     
                     <b>Assign an ip address</b>
-                    <pre>ip [IP]/[MASK] [GATEWAY] </pre>
+                    <pre>ip [IP] [MASK] [GATEWAY] </pre>
                     
                     <b>Save the config</b>
                     <pre>save</pre>
