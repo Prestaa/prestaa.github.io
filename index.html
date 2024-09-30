@@ -213,7 +213,9 @@ distance [VALUE]</pre>
                     </div>
                     <div>
                         <h2 id="cisco-ospf">OSPF</h2>
-                        <b>Configuration</b>
+                        <b>Configuration</b>bgp con iden    100
+bgp con peers 110 120
+
                         <pre>router ospf [PROCESS_ID]
     network [IP_ADDRESS] [REVERSED_MASK] area [ZONE_OSPF]
 </pre>
@@ -238,7 +240,9 @@ no ip route cache</pre>
                         <pre>router bgp [AS_NUMBER]
     network [IP_ADDRESS] mask [MASK] 
     neighbor [IP_ADDRESS] remote-as [AS_OF_REMOTE_ROUTER]
-</pre>
+
+    bgp confederation identifier [AS]
+    bgp confederation peers 110 120</pre>
                     </div>
 
 
