@@ -29,8 +29,6 @@
                     <ul>
                         <li><a href="#ip-ip-configuration">IP Configuration</a></li>                    
                         <li><a href="#ip-routing">Routing</a></li>
-                        <li><a href="#ip-etc-network-interfaces">/etc/network/interfaces</a></li>                    
-                        <li><a href="#ip-show">Show</a></li>
                     </ul>
                 </div>
 
@@ -46,6 +44,7 @@
                         <i class="fa-solid fa-diagram-project"></i> <span>COUCHE 3</span>
                         <ul>
                             <li><a href="#cisco-ip-configuration">IP Configuration</a></li>
+                            <li><a href="#cisco-interfaces">Interfaces</a></li>
                             <li><a href="#cisco-routes">Routes</a></li>
 
                             <li class="sub-sub-title"><a href="#cisco-routing-protocols"><i class="fa-solid fa-network-wired"></i>ROUTING PROTOCOLS</a></li>
@@ -120,6 +119,20 @@
                     </div>
 
                     <div>
+                        <h2 id="cisco-interfaces">Interfaces</h2>
+                        <pre>
+interface [INAME]
+    ! Passe en mode full duplex
+    duplex full
+    
+    ! Set la vitesse en mbps (10/100/1000)
+    speed 100
+
+    ! detecte tout seul si c'est un cable droit ou croisé
+    mdix auto</pre>
+                    </div>
+
+                    <div>
                         <h2 id="ip-routing">Routes</h2>
                         <b>Set a route</b>
 
@@ -132,33 +145,6 @@
                         <span class="note">To unset a route or the default gateway, simply replace “add” by “delete”.</span>
                     </div>
 
-                    <div>
-                        <h2 id="ip-etc-network-interfaces">/etc/network/interfaces</h2>
-                        <b>General boilerplate</b>
-
-                        <pre>
-auto [INAME]
-iface [INAME1 INAME2 INAME3...] dhcp
-iface6 [INAME1 INAME2 INAME3] dhcp
-
-iface [INAME] inet static
-    address [IP]
-    netmask [NETMASK]
-    gateway [GATEWAY]</pre>
-                    </div>
-                    
-                    <div>
-                        <h2 id="ip-show">Show</h2>
-                        <b>Show interface informations</b>
-                        <pre>ip a s [INAME]</pre>
-
-                        <b>Show configured routes</b>
-                        <pre>ip route</pre>
-
-                        <b>Show neighbors</b>
-                        <pre>ip show</pre>
-
-                    </div>
                 </section>
 
 
@@ -172,7 +158,7 @@ iface [INAME] inet static
                         <b>Set an ip address</b>
 
                         <pre>interface [INAME]
-ip add [IP_ADDRESS]/[MASK]</pre>
+ip add [IP_ADDRESS] [MASK]</pre>
                         
                         <span class="note">To unset an ip address, simply add “no” before the “ip” command.</span>
                     </div>
@@ -181,7 +167,7 @@ ip add [IP_ADDRESS]/[MASK]</pre>
                         <h2 id="cisco-routes">Routes</h2>
                         <b>Set a route</b>
 
-                        <pre>ip route [DST_NETWORK] [DST_MASK] [ROUTER]</pre>
+                        <pre>ip route [DST_NETWORK] [DST_MASK] [NEXT_HOP]</pre>
 
                         <b>Set the default gw</b>
 
@@ -195,7 +181,7 @@ ip add [IP_ADDRESS]/[MASK]</pre>
                     <div>
                         <h2 id="cisco-rip">RIP</h2>
                         <pre>router rip
-version 2</pre>
+    version 2</pre>
                         <b>Announce network</b>
                         <pre>network [NETWORK]</pre>
 
@@ -203,20 +189,22 @@ version 2</pre>
                         <pre>
 ! Désactiver la récapitulation
 no auto-summary
+
 ! Pas de rip
 passive-interface [INAME]
+
 ! Redistribuer route par défaut
 redistribute static
+
 ! Changer la distance administrative
 distance [VALUE]</pre>
 
                     </div>
                     <div>
                         <h2 id="cisco-ospf">OSPF</h2>
-                        <b>Configuration</b>bgp con iden    100
-bgp con peers 110 120
+                        <b>Configuration</b>
 
-                        <pre>router ospf [PROCESS_ID]
+                        <pre>router ospf [PROCESS_ID] 
     network [IP_ADDRESS] [REVERSED_MASK] area [ZONE_OSPF]
 </pre>
                         <span class="note">Après avoir changer ID de retour</span>
@@ -238,11 +226,18 @@ no ip route cache</pre>
                         <h2 id="cisco-bgp">BGP</h2>
                         <b>Configuration</b>
                         <pre>router bgp [AS_NUMBER]
+    ! Annoncer les réseaux auxquels nous sommes connecté
     network [IP_ADDRESS] mask [MASK] 
+
+    ! Annonce nos voisins
     neighbor [IP_ADDRESS] remote-as [AS_OF_REMOTE_ROUTER]
 
+
+    ! Annonce l'AS de la confederation (l'"AS parent")
     bgp confederation identifier [AS]
-    bgp confederation peers 110 120</pre>
+    
+    ! Annonce les autres AS dans la confederation 
+    bgp confederation peers [AS_X] [AS_X] [AS...]</pre>
                     </div>
 
 
@@ -252,20 +247,20 @@ no ip route cache</pre>
                         <b>Create a vlan</b>
                         <pre>
 vlan [NUMBER]
-name [NAME_OF_THE_VLAN]</pre>
+    name [NAME_OF_THE_VLAN]</pre>
                         
                         <b>Put an interface in a vlan</b>
                         <pre>
 interface [INAME]
-switchport mode access
-switchport access vlan [NUMBER]</pre>
+    switchport mode access
+    switchport access vlan [NUMBER]</pre>
 
                         <b>Trunk encapsulation dot1q</b>
                         <pre>
 interface [INAME]
-switchport trunk encapsulation dot1q
-switchport mode trunk
-switchport trunk allowed vlan [VLAN_NUMBER1],[VLAN_NUMER2]</pre>
+    switchport trunk encapsulation dot1q
+    switchport mode trunk
+    switchport trunk allowed vlan [VLAN_NUMBER1],[VLAN_NUMER2]</pre>
 
                     </div>
 
@@ -300,13 +295,13 @@ spanning-tree vlan 1 max-age [DURATION: 20]
                         <b>Disable STP</b>
                         <pre>
 interface [INAME]
-spanning-tree portfast</pre>
+    spanning-tree portfast</pre>
 
                         <b>Update the port</b>
                         <pre>
 interface [INAME]
-no negotiation auto
-speed 100</pre>
+    no negotiation auto
+    speed 100</pre>
                         
                         <b>Clear the mac address table</b>
                         <pre>clear mac address-table dynamic</pre>
@@ -437,6 +432,8 @@ login local</pre>
 
                         <b>Routing</b>
                         <pre>show ip protocols</pre>
+                        <pre>show ip route</pre>
+
                         <b>OSPF</b>
                         <pre>show ip ospf </pre>
                         <pre>show ip ospf data</pre>
