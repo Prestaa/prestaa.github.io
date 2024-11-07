@@ -51,6 +51,7 @@
                             <ul>
                                 <li><a href="#cisco-rip">RIP</a></li>
                                 <li><a href="#cisco-ospf">OSPF</a></li>
+                                <li><a href="#cisco-ospf-v6">OSPF</a></li>
                                 <li><a href="#cisco-bgp">BGP</a></li>
                             </ul>
                         </ul>
@@ -229,23 +230,22 @@ bandwith [BANDWITH_KBIT/S]</pre>
 maximum path 2
 ! Ip route cache bloque sur une interface pour accélerer le routage
 no ip route cache</pre>
-
-                        <h2 id="cisco-ospf">OSPFv6</h2>
+                        <h2 id="cisco-ospf-v6">OSPFv6</h2>
                         <b>Configuration</b>
 
                         <pre>ipv6 router ospf [PROCESS_ID] 
     router-id [UNIQUE_ID]
-    !ex: router id 1.1.1.1
+    ! ex: router id 1.1.1.1
 </pre>
                         <br><br>
-                        <b>Ajouter une interface à annoncer</b>
+                        <b>Ajouter une interface à annoncer</b><br>
                         <span class="note">On n'annonce pas de "network" directement dans OSPF, on spécifie (au niveau des interface) qu'on veut qu'elles s'annoncent en tant que network connecté</span>
                         <pre>
 interface [INAME]
-ipv6 ospf [PROCESS_ID] area 0
+    ipv6 ospf [PROCESS_ID] area 0
 
-! On peut changer le cout en faisant
-ipv6 ospf cost [COST</pre>
+    ! On peut changer le cout en faisant
+    ipv6 ospf cost [COST</pre>
 
     <div>
                         <h2 id="cisco-bgp">BGP</h2>
