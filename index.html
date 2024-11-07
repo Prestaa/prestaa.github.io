@@ -158,7 +158,16 @@ interface [INAME]
                         <b>Set an ip address</b>
 
                         <pre>interface [INAME]
-ip add [IP_ADDRESS] [MASK]</pre>
+ip add [IP_ADDRESS] [MASK]
+! Configurer une IPv6 statique
+ipv6 add [IPv6_ADDRESS]/[PREFIX]
+! ex: ipv6 add 2a01:11::1/126
+                            
+! Configurer une IPv6 dynamique (EUI-64)
+ipv6 add [IPv6_NETWORK]/[PREFIX] eui-64
+! ex: ipv6 add 2a01:11::/126
+ipv6 add autoconfig
+</pre>
                         
                         <span class="note">To unset an ip address, simply add “no” before the “ip” command.</span>
                     </div>
@@ -220,9 +229,25 @@ bandwith [BANDWITH_KBIT/S]</pre>
 maximum path 2
 ! Ip route cache bloque sur une interface pour accélerer le routage
 no ip route cache</pre>
-                    </div>
 
-                    <div>
+                        <h2 id="cisco-ospf">OSPFv6</h2>
+                        <b>Configuration</b>
+
+                        <pre>ipv6 router ospf [PROCESS_ID] 
+    router-id [UNIQUE_ID]
+    !ex: router id 1.1.1.1
+</pre>
+                        <br><br>
+                        <b>Ajouter une interface à annoncer</b>
+                        <span class="note">On n'annonce pas de "network" directement dans OSPF, on spécifie (au niveau des interface) qu'on veut qu'elles s'annoncent en tant que network connecté</span>
+                        <pre>
+interface [INAME]
+ipv6 ospf [PROCESS_ID] area 0
+
+! On peut changer le cout en faisant
+ipv6 ospf cost [COST</pre>
+
+    <div>
                         <h2 id="cisco-bgp">BGP</h2>
                         <b>Configuration</b>
                         <pre>router bgp [AS_NUMBER]
@@ -358,6 +383,9 @@ default-router [GATEWAY]</pre>
                         <h2 id="cisco-good-practices">Good practices</h2>
                         <b>General things to do</b>
                         <pre>
+! Activer le routate ipv6
+ipv6 unicast-routing
+                            
 ! Chiffrement des mots de passes locaux cisco
 service password-encryption
 
