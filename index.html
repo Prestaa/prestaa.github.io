@@ -239,7 +239,8 @@ distance [VALUE]</pre>
                         <pre>
 interface [INAME]
     ip ospf cost [COST]
-    bandwith [BANDWITH_KBIT/S]</pre>
+    bandwith [BANDWITH_KBIT/S]
+    ip rsvp bandwidth [BANDWITH]</pre>
                         <pre>interface Fa0/0/0
     ip ospf cost 10
     bandwith 1000</pre>
@@ -572,6 +573,7 @@ login local</pre>
                         <b>Routing</b>
                         <pre>show ip protocols</pre>
                         <pre>show ip route</pre>
+                        <pre>show mpls traffic-eng tunnels</pre>
 
                         <b>OSPF</b>
                         <pre>show ip ospf </pre>
