@@ -14,7 +14,7 @@
 </head>
     <body>
         <main class="container" role="main">
-            <h1 class="title">Network Cheatsheet<div style="font-size: 15px; font-style: italic; color: var(--secondary); font-weight: 500; ">By IDIRI Anas</div></h1>
+            <h1 class="title">Networking Cheatsheet<div style="font-size: 15px; font-style: italic; color: var(--secondary); font-weight: 500; ">By IDIRI Anas</div></h1>
             
 
             <section id="menu">
@@ -111,40 +111,46 @@
                     <div style="margin-top: 50px;">
                         <h2 id="ip-ip-configuration">IP Address</h2>
                         
-                        <b>Up/Down an interface</b>
-                        <pre>ip link set [INAME] up|down</pre>
-                        
-                        <b>Assign an ip address to an interface</b>
+                        <b>Assigner une IP à une interface</b>
                         <pre>ip addr add [IP]/[MASK] dev [INAME]</pre>
+                        <pre>ip addr add 192.168.1.1/24 dev eth0</pre>
+                        <span class="note">Pour supprimer l'ip de l'interface, remplacez "add" par "del" dans la commande en haut.</span>
+                        <br><br>
+                        <b>Up une interface</b>
+                        <pre>ip link set [INAME] up</pre>
+                        <pre>ip link set eth0 up</pre>
+                        <span class="note">Pour down l'interface, remplacez "up" par "down"</span>
                         
-                        <span class="note">To unset an ip address, simply replace “add” by “delete”.</span>
                     </div>
 
                     <div>
                         <h2 id="cisco-interfaces">Interfaces</h2>
                         <pre>
 interface [INAME]
-    ! Passe en mode full duplex
     duplex full
-    
-    ! Set la vitesse en mbps (10/100/1000)
-    speed 100
+    speed [SPEED (10|100|1000)]
+    mdix auto</pre>
 
-    ! detecte tout seul si c'est un cable droit ou croisé
+    <pre>
+interface Fa0/0/0
+    duplex full
+    speed 100
     mdix auto</pre>
                     </div>
 
                     <div>
                         <h2 id="ip-routing">Routes</h2>
-                        <b>Set a route</b>
+                        <b>Mettre en place une route</b>
 
                         <pre>ip route add [DST_NETWORK]/[DST_MASK] via [ROUTER_IP]</pre>
+                        <pre>ip route add 172.16.0.0/16 via 192.168.0.254</pre>
 
-                        <b>Set the default gateway</b>
+                        <b>Mettre en place la route par défaut</b>
 
                         <pre>ip route add default via [GATEWAY_IP]</pre>
+                        <pre>ip route add default via 192.168.0.254</pre>
                         
-                        <span class="note">To unset a route or the default gateway, simply replace “add” by “delete”.</span>
+                        <span class="note">Utiliser "del" au lieu de "add" pour supprimer la route.</span>
                     </div>
 
                 </section>
@@ -160,18 +166,24 @@ interface [INAME]
                         <b>Set an ip address</b>
 
                         <pre>interface [INAME]
-ip add [IP_ADDRESS] [MASK]
-! Configurer une IPv6 statique
-ipv6 add [IPv6_ADDRESS]/[PREFIX]
-! ex: ipv6 add 2a01:11::1/126
-                            
-! Configurer une IPv6 dynamique (EUI-64)
-ipv6 add [IPv6_NETWORK]/[PREFIX] eui-64
-! ex: ipv6 add 2a01:11::/126
-ipv6 add autoconfig
+    ip add [IP_ADDRESS] [MASK]
+
+    ipv6 add [IPv6_ADDRESS]/[PREFIX]
+                                
+    ! Configurer une IPv6 dynamique (EUI-64)
+    ipv6 add [IPv6_NETWORK]/[PREFIX] eui-64
+    ipv6 add autoconfig
 </pre>
-                        
-                        <span class="note">To unset an ip address, simply add “no” before the “ip” command.</span>
+
+<pre>interface Fa0/0/0
+    ip add 192.168.1.1 255.255.255.0
+
+    ipv6 add 2a01:11::1/126
+                                
+    ! Configurer une IPv6 dynamique (EUI-64)
+    ipv6 add 2a01:11::/126 eui-64
+    ipv6 add autoconfig
+    </pre>
                     </div>
 
                     <div>
@@ -179,12 +191,13 @@ ipv6 add autoconfig
                         <b>Set a route</b>
 
                         <pre>ip route [DST_NETWORK] [DST_MASK] [NEXT_HOP]</pre>
+                        <pre>ip route 172.16.0.0 255.255.0.0 10.0.0.2</pre>
 
                         <b>Set the default gw</b>
 
                         <pre>ip default-gateway [GATEWAY]</pre>
+                        <pre>ip default-gateway 10.0.0.2</pre>
                         
-                        <span class="note">To unset an route or the default gateway, simply add no before the ip command.</span>
                     </div>
 
 
@@ -195,6 +208,7 @@ ipv6 add autoconfig
     version 2</pre>
                         <b>Announce network</b>
                         <pre>network [NETWORK]</pre>
+                        <pre>network 192.168.1.0</pre>
 
                         <b>Others</b>
                         <pre>
@@ -216,15 +230,19 @@ distance [VALUE]</pre>
                         <b>Configuration</b>
 
                         <pre>router ospf [PROCESS_ID] 
-    network [IP_ADDRESS] [REVERSED_MASK] area [ZONE_OSPF]
-</pre>
+    network [IP_ADDRESS] [REVERSED_MASK] area [ZONE_OSPF]</pre>
+                        <pre>router ospf 10 
+        network 192.168.0.0 0.0.0.255 area 0</pre>
                         <span class="note">Après avoir changer ID de retour</span>
                         <br><br>
                         <b>Interact with interfaces</b>
                         <pre>
 interface [INAME]
-ip ospf cost [COST]
-bandwith [BANDWITH_KBIT/S]</pre>
+    ip ospf cost [COST]
+    bandwith [BANDWITH_KBIT/S]</pre>
+                        <pre>interface Fa0/0/0
+    ip ospf cost 10
+    bandwith 1000</pre>
 
                         <b>Chemins multiples</b>
                         <pre>
@@ -235,9 +253,10 @@ no ip route cache</pre>
                         <b>Configuration</b>
 
                         <pre>ipv6 router ospf [PROCESS_ID] 
-    router-id [UNIQUE_ID]
-    ! ex: router id 1.1.1.1
-</pre>
+    router-id [UNIQUE_ID]</pre>
+
+                        <pre>ipv6 router ospf 10 
+    router-id 10.0.0.1</pre>
                         <br><br>
                         <b>Ajouter une interface à annoncer</b><br>
                         <span class="note">On n'annonce pas de "network" directement dans OSPF, on spécifie (au niveau des interface) qu'on veut qu'elles s'annoncent en tant que network connecté</span>
@@ -246,7 +265,11 @@ interface [INAME]
     ipv6 ospf [PROCESS_ID] area 0
 
     ! On peut changer le cout en faisant
-    ipv6 ospf cost [COST</pre>
+    ipv6 ospf cost [COST]</pre>
+
+                        <pre>interface Fa0/0/0
+    ipv6 ospf 1O area 0
+    ipv6 ospf cost 1</pre>
 
     <div>
                         <h2 id="cisco-bgp">BGP</h2>
@@ -269,11 +292,23 @@ interface [INAME]
 
     ! Définir les clients du route reflector (si on en est un)
     neighbor [IP_ADDRESS] route-reflector-client</pre>
+    <pre>router bgp 65500
+    network 10.0.0.0 mask 255.255.255.252 
+    neighbor 10.0.0.1 remote-as 65601
+    redistribute ospf 10
+
+    bgp confederation identifier 65001
+    bgp confederation peers 65002 65003 65004
+    
+    neighbor 10.0.0.3 route-reflector-client</pre>
+
 
     <b>Redistribuer l'OSPF dans le BGP</b>
     <pre>router ospf [PROCESS_ID]
-    redistribute bgp [AS] subnets
-    </pre>
+    redistribute bgp [AS] subnets</pre>
+    <pre>router ospf 10
+    redistribute bgp 65500 subnets</pre>
+    
 </div>  
 
 
@@ -284,12 +319,20 @@ interface [INAME]
                         <pre>
 vlan [NUMBER]
     name [NAME_OF_THE_VLAN]</pre>
-                        
+    <pre>
+vlan 100
+    name voice</pre>
+
                         <b>Put an interface in a vlan</b>
                         <pre>
 interface [INAME]
     switchport mode access
     switchport access vlan [NUMBER]</pre>
+
+    <pre>
+interface Fa0/0/0
+    switchport mode access
+    switchport access vlan 100</pre>
 
                         <b>Trunk encapsulation dot1q</b>
                         <pre>
@@ -297,6 +340,12 @@ interface [INAME]
     switchport trunk encapsulation dot1q
     switchport mode trunk
     switchport trunk allowed vlan [VLAN_NUMBER1],[VLAN_NUMER2]</pre>
+
+                        <pre>
+interface Fa0/0/0
+    switchport trunk encapsulation dot1q
+    switchport mode trunk
+    switchport trunk allowed vlan 100,200</pre>
 
                     </div>
 
@@ -380,8 +429,11 @@ ip access-group [ACL_ID] in</pre>
                         <pre>mpls traffic-eng tunnels</pre>
                         
                         <b>Création de l'interface loopback</b>
-                        <pre>interface loopback0
+                        <pre>interface [INAME]
     ip address [IP_ADDRESS] [MASK]</pre>
+
+                        <pre>interface loopback0
+    ip address 10.0.0.1 255.255.255.255</pre>
 
                         <b>Activer MPLS sur les interfaces</b>
                         <pre>interface [INAME]
@@ -409,9 +461,18 @@ ip access-group [ACL_ID] in</pre>
     tunnel mpls traffic-eng path-option 1 explicit name [NAME]</pre>
                         <b>Configurer les IP de la route du tunnel</b>
                         <pre>ip explicit-path name [NAME]
-next-address [IP]
-next-address [IP]</pre>
+    next-address [IP]
+    next-address [IP]</pre>
                     <span class="note">Tunnel unidirectionnel</span>
+                    <br><br>
+
+                    <b>Configurer un tunnel dynamique</b>
+                    <pre>interface Tunnel1
+    ip unnumbered loopback0
+    tunnel destination [DESTINATION_LOOPBACK_IP]
+    tunnel mode mpls traffic-eng
+    tunnel mpls traffic-eng autoroute announce
+    tunnel mpls traffic-eng path-option 2 dynamic</pre>
                     </div>
 
                     <h1 class="category-sub-title"><i class="fa-solid fa-gears"></i> <span>AUTRES</span></h1>
@@ -425,8 +486,8 @@ ip dhcp excluded-address x.x.x.x
 
 ! On créé le pool DHCP
 ip dhcp pool [NAME]
-network [NETWORK] [MASK]
-default-router [GATEWAY]</pre>
+    network [NETWORK] [MASK]
+    default-router [GATEWAY]</pre>
                     </div>
 
                     <div>
