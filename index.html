@@ -89,7 +89,8 @@
 
                         <i class="fa-solid fa-diagram-project"></i> <span>General</span>
                         <ul>
-                            <li><a href="#juniper-general">General</a></li>
+                            <li><a href="#juniper-general">General commands</a></li>
+                            <li><a href="#juniper-config">Configuration</a></li>
                         </ul>
                     </ul>
                 </div>
@@ -613,14 +614,29 @@ login local</pre>
                 <div style="margin-top: 50px;">
                     <h2 id="juniper-general">General config</h2>
                     
-                    <b>Entrer en mode configuration</b>
+                    <b>Useful show commands</b>
+                    <pre>show config
+show bgp summary</pre>
+
+                    <b>Enter in config mode</b>
                     <pre>configure</pre>
+
+                    <b>Exec commands from config mode</b>
+                    <pre>run [COMMAND]</pre>
 
                     <b>Get some tips</b>
                     <pre>help tip cli</pre>
 
                     <b>Pop a shell</b>
                     <pre>start shell</pre>
+
+                    <b>Copy/Paste config blocks</b>
+                    <pre>load merge terminal</pre>
+                </div>
+
+                <div style="margin-top: 50px;">
+                    <h2 id="juniper-config">Configuration</h2>
+                    
 
                     <b>Configuration hierarchy</b>
                     <pre>system                -> configure hostname, domain name, DNS, user logins and permissions, mappings between hostnames and addresses, and software PS                        
@@ -644,9 +660,30 @@ class-of-service
 routing-instances     -> configure one or more routing instances
 accounting-options    -> configure accounting stats
 </pre>
-                </div>
+                    <b>Move into a configuration group</b>
+                    <pre>edit [GROUP]</pre>
+                    <pre>edit system</pre>
 
-                <pre>edit up top set  delete</pre>
+                    <b>Configure an attribute</b>
+                    <pre>set [PATH_TO_THE_ATTRIBUTE] [ATTRIBUTE] [VALUE]</pre>
+                    
+                    <span>For example from system, we type:</span>
+                    <pre>set host-name juniper_1</pre>
+                    <span>But from the top of the hierarchy we type:</span>
+                    <pre>set system host-name juniper_1</pre>
+
+                    <b>Delete an attribute</b>
+                    <pre>delete [ATTRIBUTE]</pre>
+
+                    <b>Move into the hierarchy</b>
+                    <pre>up</pre>
+                    <pre>top</pre>
+
+                    <b>Commit changes</b>
+                    <pre>commit check
+commit and-quit
+</pre>
+                </div>
             </section>
 
             <section id="GNS">
