@@ -81,6 +81,23 @@
                 <div class="global-titles">
                     <i class="fa-solid fa-caret-right caret"></i> 
                     <a href="#">
+                        <i class="fa-solid fa-globe"></i> <span>Juniper</span>
+                    </a>
+                </div>
+                 <div class="sub-titles none">
+                    <ul>
+
+                        <i class="fa-solid fa-diagram-project"></i> <span>General</span>
+                        <ul>
+                            <li><a href="#juniper-general">General</a></li>
+                        </ul>
+                    </ul>
+                </div>
+
+
+                <div class="global-titles">
+                    <i class="fa-solid fa-caret-right caret"></i> 
+                    <a href="#">
                         <i class="fa-solid fa-server"></i> <span>GNS3</span>
                     </a>
                 </div>
@@ -588,6 +605,48 @@ login local</pre>
 
                     </div>
                 </section>
+            </section>
+
+            <section id="Juniper">
+                <h1 class="category-title"><i class="fa-solid fa-globe"></i> <span>Juniper</span></h1>
+                
+                <div style="margin-top: 50px;">
+                    <h2 id="juniper-general">General config</h2>
+                    
+                    <b>Entrer en mode configuration</b>
+                    <pre>configure</pre>
+
+                    <b>Get some tips</b>
+                    <pre>help tip cli</pre>
+
+                    <b>Pop a shell</b>
+                    <pre>start shell</pre>
+
+                    <b>Configuration hierarchy</b>
+                    <pre>system                -> configure hostname, domain name, DNS, user logins and permissions, mappings between hostnames and addresses, and software PS                        
+    - host-name
+    - time-zone
+                        protocols             -> configure BGP, IS-IS, LDP, MPLS, OSPF, RIP, and RSVP
+interfaces      
+    - ge-0/0/0
+
+routing-options       -> configure static routes, autonomous system numbers, confederation members, and global tracing
+forwarding-options  
+
+snmp
+groups
+access                -> configure CHAP
+chassis               -> configure alarms, SONETS...
+firewall            
+security              -> configure IPsec services
+policy-options        -> configure routing policies (filter / set properties in incoming/outgoing routes)
+class-of-service    
+routing-instances     -> configure one or more routing instances
+accounting-options    -> configure accounting stats
+</pre>
+                </div>
+
+                <pre>edit up top set  delete</pre>
             </section>
 
             <section id="GNS">
