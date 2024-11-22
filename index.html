@@ -92,19 +92,11 @@
                             <li><a href="#juniper-general">General commands</a></li>
                             <li><a href="#juniper-config">Configuration</a></li>
                         </ul>
-                    </ul>
-                </div>
 
-
-                <div class="global-titles">
-                    <i class="fa-solid fa-caret-right caret"></i> 
-                    <a href="#">
-                        <i class="fa-solid fa-server"></i> <span>GNS3</span>
-                    </a>
-                </div>
-                <div class="sub-titles none">
-                    <ul>
-                        <li><a href="#gns-ip-configuration">IP Configuration</a></li>
+                        <i class="fa-solid fa-gears"></i> <span>AUTRES</span>
+                        <ul>
+                            <li><a href="#juniper-show">Show</a></li>    
+                        </ul>
                     </ul>
                 </div>
 
@@ -593,17 +585,17 @@ login local</pre>
                         <b>Routing</b>
                         <pre>show ip protocols</pre>
                         <pre>show ip route</pre>
-                        <pre>show mpls traffic-eng tunnels</pre>
 
                         <b>OSPF</b>
                         <pre>show ip ospf </pre>
                         <pre>show ip ospf data</pre>
                         <pre>show ip ospf interface [INAME]</pre>
-                        
-                        <b>"Grep"-like tricks</b>
-                        <pre>show interface | include up|down</pre>
-                        <pre>show interface | include up&down</pre>
 
+                        <b>BGP</b>
+                        <pre>show ip bgp neighbors</pre>
+
+                        <b>MPLS</b>
+                        <pre>show mpls traffic-eng tunnels</pre>
                     </div>
                 </section>
             </section>
@@ -613,11 +605,7 @@ login local</pre>
                 
                 <div style="margin-top: 50px;">
                     <h2 id="juniper-general">General config</h2>
-                    
-                    <b>Useful show commands</b>
-                    <pre>show config
-show bgp summary</pre>
-
+    
                     <b>Enter in config mode</b>
                     <pre>configure</pre>
 
@@ -632,6 +620,11 @@ show bgp summary</pre>
 
                     <b>Copy/Paste config blocks</b>
                     <pre>load merge terminal</pre>
+      
+                    <b>Commit changes</b>
+                    <pre>commit check
+commit and-quit
+</pre>
                 </div>
 
                 <div style="margin-top: 50px;">
@@ -639,70 +632,66 @@ show bgp summary</pre>
                     
 
                     <b>Configuration hierarchy</b>
-                    <pre>system                -> configure hostname, domain name, DNS, user logins and permissions, mappings between hostnames and addresses, and software PS                        
+                    <br>
+                    <span class="note">Cette liste n'est pas exhaustive, et n'inclut que les configurations les plus communes</span>
+                    <pre>
+system                -> configure hostname, domain name, DNS, user logins and permissions,
+                         mappings between hostnames and addresses, and software PS                        
     - host-name
     - time-zone
-                        protocols             -> configure BGP, IS-IS, LDP, MPLS, OSPF, RIP, and RSVP
-interfaces      
+                        
+protocols             -> configure BGP, IS-IS, LDP, MPLS, OSPF, RIP, and RSVP
+
+interfaces            -> configure Fa/Gi interfaces
     - ge-0/0/0
 
-routing-options       -> configure static routes, autonomous system numbers, confederation members, and global tracing
+routing-options       -> configure static routes, autonomous system numbers, confederation
+                         members, and global tracing
+
 forwarding-options  
 
-snmp
 groups
-access                -> configure CHAP
-chassis               -> configure alarms, SONETS...
 firewall            
 security              -> configure IPsec services
-policy-options        -> configure routing policies (filter / set properties in incoming/outgoing routes)
+policy-options        -> configure routing policies (filter / set properties in 
+                         incoming/outgoing routes)
 class-of-service    
 routing-instances     -> configure one or more routing instances
-accounting-options    -> configure accounting stats
 </pre>
-                    <b>Move into a configuration group</b>
+                    <b>Edit a configuration group</b>
                     <pre>edit [GROUP]</pre>
                     <pre>edit system</pre>
 
                     <b>Configure an attribute</b>
                     <pre>set [PATH_TO_THE_ATTRIBUTE] [ATTRIBUTE] [VALUE]</pre>
                     
-                    <span>For example from system, we type:</span>
+                    <span class="note">For example from system, we type:</span>
                     <pre>set host-name juniper_1</pre>
-                    <span>But from the top of the hierarchy we type:</span>
+                    <span class="note">But from the top of the hierarchy we type:</span>
                     <pre>set system host-name juniper_1</pre>
 
                     <b>Delete an attribute</b>
                     <pre>delete [ATTRIBUTE]</pre>
 
-                    <b>Move into the hierarchy</b>
+                    <b>Move to top the hierarchy</b><br>
+                    <span class="note">Se déplacer d'un cran aussi</span>
                     <pre>up</pre>
+                    <span class="note">Aller au plus haut level</span>
                     <pre>top</pre>
-
-                    <b>Commit changes</b>
-                    <pre>commit check
-commit and-quit
-</pre>
                 </div>
-            </section>
 
-            <section id="GNS">
-                <h1 class="category-title"><i class="fa-solid fa-server"></i> <span>GNS 3</span></h1>
-                
+
                 <div style="margin-top: 50px;">
-                    <h2 id="gns-ip-configuration">IP Configuration</h2>
+                    <h2 id="juniper-show">Show</h2>
+                    <b>Config</b>
+                    <pre>show config</pre>
                     
-                    <b>Display IP</b>
-                    <pre>show ip all</pre>
-                    
-                    <b>Assign an ip address</b>
-                    <pre>ip [IP] [MASK] [GATEWAY] </pre>
-                    
-                    <b>Save the config</b>
-                    <pre>save</pre>
-                </div>
+                    <b>BGP</b>
+                    <pre>show bgp summary</pre>
 
+                </div>
             </section>
+
         </main>  
         
         <div id="back-to-top"><i class="fa-solid fa-arrow-up"></i></div>
