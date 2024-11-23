@@ -90,7 +90,24 @@
                         <i class="fa-solid fa-diagram-project"></i> <span>General</span>
                         <ul>
                             <li><a href="#juniper-general">General commands</a></li>
-                            <li><a href="#juniper-config">Configuration</a></li>
+                            <li><a href="#juniper-edit">Edit configuration</a></li>
+                        </ul>
+
+                        <i class="fa-solid fa-gear"></i> <span>Configuration</span>
+                        <ul>
+                            <li><a href="#juniper-config-hierarchy">Configuration hierarchy</a></li>
+
+                            <li><a href="#juniper-config-system">System</a></li>
+                            <li><a href="#juniper-config-protocols">Protocols</a></li>
+                            <li><a href="#juniper-config-interfaces">Interfaces</a></li>
+                            <li><a href="#juniper-config-routing">Routing options</a></li>
+                            <li><a href="#juniper-config-forwarding">Forwarding options</a></li>
+                            <li><a href="#juniper-config-groups">Groups</a></li>
+                            <li><a href="#juniper-config-firewall">Firewall</a></li>
+                            <li><a href="#juniper-config-security">Security</a></li>
+                            <li><a href="#juniper-config-policy">Policy options</a></li>
+                            <li><a href="#juniper-config-class">Class of services</a></li>
+                            <li><a href="#juniper-config-instances">Routing instances</a></li>
                         </ul>
 
                         <i class="fa-solid fa-gears"></i> <span>AUTRES</span>
@@ -166,7 +183,7 @@ interface Fa0/0/0
                 </section>
 
 
-                <section id="cisco">
+                < id="cisco">
                     <h1 class="category-title"><i class="fa-solid fa-network-wired"></i> <span>Cisco</span></h1>
 
                     <h1 class="category-sub-title"><i class="fa-solid fa-diagram-project"></i> <span>COUCHE 3</span></h1>
@@ -569,49 +586,47 @@ line vty 0 [YOUR NUMBER OF VTYS]
 transport input ssh
 login local</pre>
                         
-                    </div>
+                </div>
 
 
-                    <div>
-                        <h2 id="cisco-show">Show</h2>
-                        <b>Show version, ram etc</b>
-                        <pre>show version</pre>
-                        
-                        <b>Show brief information about interfaces</b>
-                        <pre>show ip int brief</pre>
+                <div>
+                    <h2 id="cisco-show">Show</h2>
+                    <b>Show version, ram etc</b>
+                    <pre>show version</pre>
+                    
+                    <b>Show brief information about interfaces</b>
+                    <pre>show ip int brief</pre>
 
-                        <b>Show VLANs</b>
-                        <pre>sh vlan</pre>
+                    <b>Show VLANs</b>
+                    <pre>sh vlan</pre>
 
-                        <b>Mac address table</b>
-                        <pre>sh mac address-table</pre>
+                    <b>Mac address table</b>
+                    <pre>sh mac address-table</pre>
 
-                        <b>Spanning tree</b>
-                        <pre>show spanning-tree &lt;summary&gt;</pre>
-                        <pre>show spanning-tree vlan 1</pre>
+                    <b>Spanning tree</b>
+                    <pre>show spanning-tree &lt;summary&gt;</pre>
+                    <pre>show spanning-tree vlan 1</pre>
 
-                        <b>Routing</b>
-                        <pre>show ip protocols</pre>
-                        <pre>show ip route</pre>
+                    <b>Routing</b>
+                    <pre>show ip protocols</pre>
+                    <pre>show ip route</pre>
 
-                        <b>OSPF</b>
-                        <pre>show ip ospf </pre>
-                        <pre>show ip ospf data</pre>
-                        <pre>show ip ospf interface [INAME]</pre>
+                    <b>OSPF</b>
+                    <pre>show ip ospf </pre>
+                    <pre>show ip ospf data</pre>
+                    <pre>show ip ospf interface [INAME]</pre>
 
-                        <b>BGP</b>
-                        <pre>show ip bgp neighbors</pre>
+                    <b>BGP</b>
+                    <pre>show ip bgp neighbors</pre>
 
-                        <b>MPLS</b>
-                        <pre>show mpls traffic-eng tunnels</pre>
-                    </div>
-                </section>
-            </section>
+                    <b>MPLS</b>
+                    <pre>show mpls traffic-eng tunnels</pre>
+                </div>
 
-            <section id="Juniper">
-                <h1 class="category-title"><i class="fa-solid fa-globe"></i> <span>Juniper</span></h1>
-                
-                <div style="margin-top: 50px;">
+                <h1 class="category-title"><i class="fa-solid fa-diagram-project"></i> <span>Juniper</span></h1>
+              
+                <h1 class="category-sub-title"><i class="fa-solid fa-gear"></i> <span>General</span></h1>
+                <div >
                     <h2 id="juniper-general">General config</h2>
     
                     <b>Enter in config mode</b>
@@ -620,66 +635,44 @@ login local</pre>
                     <b>Exec commands from config mode</b>
                     <pre>run [COMMAND]</pre>
 
-                    <b>Get some tips</b>
-                    <pre>help tip cli</pre>
-
                     <b>Pop a shell</b>
                     <pre>start shell</pre>
 
-                    <b>Copy/Paste config blocks</b>
+                    <b>Copy/paste config blocks</b>
                     <pre>load merge terminal</pre>
       
                     <b>Commit changes</b>
                     <pre>commit check
 commit and-quit
 </pre>
+                    <b>Rollback</b>
+                    <pre>rollback</pre>
+                    <span class="note">The 10 previous commits are stored.</span>
+                    <br><br>
+
+                    <b>Display current user</b>
+                    <pre>status</pre>
                 </div>
 
                 <div style="margin-top: 50px;">
-                    <h2 id="juniper-config">Configuration</h2>
+                    <h2 id="juniper-edit">Edit configuration</h2>
                     
-
-                    <b>Configuration hierarchy</b>
-                    <br>
-                    <span class="note">Cette liste n'est pas exhaustive, et n'inclut que les configurations les plus communes</span>
-                    <pre>
-system                -> configure hostname, domain name, DNS, user logins and permissions,
-                         mappings between hostnames and addresses, and software PS                        
-    - host-name
-    - time-zone
-                        
-protocols             -> configure BGP, IS-IS, LDP, MPLS, OSPF, RIP, and RSVP
-
-interfaces            -> configure Fa/Gi interfaces
-    - ge-0/0/0
-
-routing-options       -> configure static routes, autonomous system numbers, confederation
-                         members, and global tracing
-
-forwarding-options  
-
-groups
-firewall            
-security              -> configure IPsec services
-policy-options        -> configure routing policies (filter / set properties in 
-                         incoming/outgoing routes)
-class-of-service    
-routing-instances     -> configure one or more routing instances
-</pre>
                     <b>Edit a configuration group</b>
                     <pre>edit [GROUP]</pre>
                     <pre>edit system</pre>
 
-                    <b>Configure an attribute</b>
-                    <pre>set [PATH_TO_THE_ATTRIBUTE] [ATTRIBUTE] [VALUE]</pre>
-                    
-                    <span class="note">For example from system, we type:</span>
+                    <b>Edit an attribute</b>
+                    <pre>set [ATTRIBUTE] [VALUE]</pre>                    
                     <pre>set host-name juniper_1</pre>
-                    <span class="note">But from the top of the hierarchy we type:</span>
-                    <pre>set system host-name juniper_1</pre>
 
                     <b>Delete an attribute</b>
                     <pre>delete [ATTRIBUTE]</pre>
+                    <pre>delete host-name</pre>
+                    
+                    <b>Activate an attribute</b>
+                    <pre>activate [ATTRIBUTE]</pre>
+                    <b>Deactivate an attribute</b>
+                    <pre>deactivate [ATTRIBUTE]</pre>
 
                     <b>Move to top the hierarchy</b><br>
                     <span class="note">Se déplacer d'un cran aussi</span>
@@ -688,13 +681,72 @@ routing-instances     -> configure one or more routing instances
                     <pre>top</pre>
                 </div>
 
+                <h1 class="category-sub-title"><i class="fa-solid fa-gear"></i> <span>Configuration</span></h1>
+                <div>
+                    <h2 id="juniper-config-hierarchy">Config hierarchy</h2>
+                    <pre>
+system                -> configure hostname, domain name, DNS, user logins and permissions,
+                         mappings between hostnames and addresses, and software PS                        
+                        
+protocols             -> configure BGP, IS-IS, LDP, MPLS, OSPF, RIP, and RSVP
+interfaces            -> configure Fa/Gi interfaces
+routing-options       -> configure static routes, autonomous system numbers, confederation
+                         members, and global tracing
+forwarding-options    -> configure forwarding options, including traffic sampling options.
+groups                -> configure configuration groups 
+firewall              -> configure filters that select packets based on their contents. 
+security              -> configure IPsec services
+policy-options        -> configure routing policies (filter / set properties in 
+                         incoming/outgoing routes)
+routing-instances     -> configure one or more routing instances
+</pre>
+                </div>
 
                 <div style="margin-top: 50px;">
+                    <h2 id="juniper-config-system">System</h2>
+                    <pre>
+- host-name
+- time-zone
+- name-server
+- domain-name
+                    </pre>
+                </div>
+                <div style="margin-top: 50px;">
+                    <h2 id="juniper-config-protocols">Protocols</h2>
+                </div>
+                <div style="margin-top: 50px;">
+                    <h2 id="juniper-config-interfaces">Interfaces</h2>
+                </div>
+                <div style="margin-top: 50px;">
+                    <h2 id="juniper-config-routing">Routing options</h2>
+                </div>
+                <div style="margin-top: 50px;">
+                    <h2 id="juniper-config-forwarding">Forwarding options</h2>
+                </div>
+                <div style="margin-top: 50px;">
+                    <h2 id="juniper-config-groups">Groups</h2>
+                </div>
+                <div style="margin-top: 50px;">
+                    <h2 id="juniper-config-firewall">Firewall</h2>
+                </div>
+                <div style="margin-top: 50px;">
+                    <h2 id="juniper-config-security">Security</h2>
+                </div>
+                <div style="margin-top: 50px;">
+                    <h2 id="juniper-config-policy">Policy options</h2>
+                </div>
+                <div style="margin-top: 50px;">
+                    <h2 id="juniper-config-class">Class of services</h2>
+                </div>
+                <div style="margin-top: 50px;">
+                    <h2 id="juniper-config-instances">Routing instances</h2>
+                </div>
+
+                <div style="margin-top: 50px;">
+                    <h1 class="category-sub-title"><i class="fa-solid fa-gears"></i> <span>AUTRES</span></h1>
+
                     <h2 id="juniper-show">Show</h2>
-                    <b>Config</b>
                     <pre>show config</pre>
-                    
-                    <b>BGP</b>
                     <pre>show bgp summary</pre>
 
                 </div>
