@@ -289,6 +289,10 @@ interface [INAME]
     ! Annoncer les réseaux auxquels nous sommes connecté
     network [IP_ADDRESS] mask [MASK] 
 
+    ! Au lieu d'annoncer chaque réseau auquel on est connecté à la main on peut taper 
+    redistribute connected
+    redistribute static
+
     ! Annonce nos voisins
     neighbor [IP_ADDRESS] remote-as [AS_OF_REMOTE_ROUTER]
 
@@ -303,8 +307,12 @@ interface [INAME]
 
     ! Définir les clients du route reflector (si on en est un)
     neighbor [IP_ADDRESS] route-reflector-client</pre>
+
     <pre>router bgp 65500
-    network 10.0.0.0 mask 255.255.255.252 
+    network 10.0.0.0 mask 255.255.255.252
+    redistribute connected
+    redistribute static
+    
     neighbor 10.0.0.1 remote-as 65601
     redistribute ospf 10
 
