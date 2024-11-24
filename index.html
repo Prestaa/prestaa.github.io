@@ -463,7 +463,9 @@ ip access-group [ACL_ID] in</pre>
                         <h2 id="cisco-mpls">MPLS</h2>
                         
                         <b>Activer MPLS</b>
-                        <pre>mpls traffic-eng tunnels</pre>
+                        
+                        <pre>ip cef
+mpls traffic-eng tunnels</pre>
                         
                         <b>Création de l'interface loopback</b>
                         <pre>interface [INAME]
@@ -485,13 +487,11 @@ ip access-group [ACL_ID] in</pre>
     log-adjadency-changes
     
     ! On ajoute l'adresse de loopback
-    network [LOOPBACK_IP] 0.0.0.0 area 0
-    ! On peut aussi faire 
     network [LOOPBACK_IP] 0.0.0.255 area 0</pre>
 
                         <b>Configurer un tunnel</b>
                         <pre>interface Tunnel1
-    ip unnumbered loopback0
+    ip unnumbered Loopback0
     tunnel destination [DESTINATION_LOOPBACK_IP]
     tunnel mode mpls traffic-eng
     tunnel mpls traffic-eng autoroute announce
@@ -499,7 +499,8 @@ ip access-group [ACL_ID] in</pre>
                         <b>Configurer les IP de la route du tunnel</b>
                         <pre>ip explicit-path name [NAME]
     next-address [IP]
-    next-address [IP]</pre>
+    next-address [IP]
+    ! Jusqu'a l'ip non loopback du routeur vers qui y a le chemin</pre>
                     <span class="note">Tunnel unidirectionnel</span>
                     <br><br>
 
