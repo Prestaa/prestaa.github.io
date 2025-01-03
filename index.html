@@ -527,7 +527,11 @@ ip dhcp excluded-address x.x.x.x
 ! On créé le pool DHCP
 ip dhcp pool [NAME]
     network [NETWORK] [MASK]
-    default-router [GATEWAY]</pre>
+    default-router [GATEWAY]
+    dns-server [DNS_IP]
+    domain-name [DOMAIN]
+    lease {days [hours [ minutes]]| infinite}
+    netbios-name-server [WINS_SERVER]</pre>
                     </div>
 
                     <div>
